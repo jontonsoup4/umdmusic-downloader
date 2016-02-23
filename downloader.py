@@ -10,9 +10,9 @@ def main():
     out_file = "us_billboard.psv"
     with open(out_file, 'a') as f:
         while True:
-            print("Downloading data from: " + request_path)
             html = s.get(request_path).content
             soup = BeautifulSoup(html, "html5lib")
+            print('Downloading from:', ' '.join(soup.find('td', width="30%").text.split()))
 
             # first find the link for the previous chart (since the date for the current chart is embedded in it)
             previous_link = soup.find_all(href=re.compile("ChDate=\d+&ChMode=P"))
